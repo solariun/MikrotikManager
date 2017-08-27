@@ -7,15 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FB1F6D5196C4B2A003EB1FD /* whois.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0FB1F6D3196C4B2A003EB1FD /* whois.cpp */; };
+		67235B9919424CF100733EC0 /* librouteros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67235B9819424CF100733EC0 /* librouteros.cpp */; };
+		67553CF31949F2B900D99FBD /* Variant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67553CF11949F2B900D99FBD /* Variant.cpp */; };
 		67CC03F219420C3500260E1C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC03F119420C3500260E1C /* main.cpp */; };
 		67CC03F419420C3500260E1C /* MikrotikManager.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 67CC03F319420C3500260E1C /* MikrotikManager.1 */; };
+		67CC042A19420CC000260E1C /* BigInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC03FA19420CC000260E1C /* BigInt.cpp */; };
+		67CC042B19420CC000260E1C /* Cert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC03FC19420CC000260E1C /* Cert.cpp */; };
+		67CC042C19420CC000260E1C /* cgi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC03FE19420CC000260E1C /* cgi.cpp */; };
+		67CC042D19420CC000260E1C /* dbf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040019420CC000260E1C /* dbf.cpp */; };
+		67CC042E19420CC000260E1C /* DynamicString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040219420CC000260E1C /* DynamicString.cpp */; };
+		67CC042F19420CC000260E1C /* Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040419420CC000260E1C /* Exception.cpp */; };
+		67CC043019420CC000260E1C /* gifsave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040719420CC000260E1C /* gifsave.cpp */; };
+		67CC043119420CC000260E1C /* Graphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040919420CC000260E1C /* Graphic.cpp */; };
+		67CC043219420CC000260E1C /* INI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040B19420CC000260E1C /* INI.cpp */; };
+		67CC043319420CC000260E1C /* jpeg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040D19420CC000260E1C /* jpeg.cpp */; };
+		67CC043419420CC000260E1C /* lzh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC040F19420CC000260E1C /* lzh.cpp */; };
+		67CC043519420CC000260E1C /* Queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041119420CC000260E1C /* Queue.cpp */; };
+		67CC043619420CC000260E1C /* RSAX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041319420CC000260E1C /* RSAX.cpp */; };
+		67CC043719420CC000260E1C /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041519420CC000260E1C /* Socket.cpp */; };
+		67CC043819420CC000260E1C /* Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041719420CC000260E1C /* Stream.cpp */; };
+		67CC043919420CC000260E1C /* Terminal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041919420CC000260E1C /* Terminal.cpp */; };
+		67CC043A19420CC000260E1C /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041B19420CC000260E1C /* thread.cpp */; };
+		67CC043B19420CC000260E1C /* UDP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041D19420CC000260E1C /* UDP.cpp */; };
+		67CC043C19420CC000260E1C /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC041F19420CC000260E1C /* Util.cpp */; };
+		67CC043D19420CC000260E1C /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC042319420CC000260E1C /* Vector.cpp */; };
+		67CC043E19420CC000260E1C /* XMLPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC042519420CC000260E1C /* XMLPath.cpp */; };
+		67CC043F19420CC000260E1C /* Y45CryptV2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67CC042819420CC000260E1C /* Y45CryptV2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		67CC03EC19420C3500260E1C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
 				67CC03F419420C3500260E1C /* MikrotikManager.1 in CopyFiles */,
@@ -25,9 +50,62 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0FB1F6D3196C4B2A003EB1FD /* whois.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = whois.cpp; path = ../../../Framework/whois.cpp; sourceTree = "<group>"; };
+		0FB1F6D4196C4B2A003EB1FD /* whois.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = whois.h; path = ../../../Framework/whois.h; sourceTree = "<group>"; };
+		0FEC5EAB19461E2300D8EECB /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		67235B9619424B9600733EC0 /* librouteros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = librouteros.h; sourceTree = "<group>"; };
+		67235B9819424CF100733EC0 /* librouteros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = librouteros.cpp; sourceTree = "<group>"; };
+		67553CF11949F2B900D99FBD /* Variant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Variant.cpp; path = ../../../Framework/Variant.cpp; sourceTree = "<group>"; };
+		67553CF21949F2B900D99FBD /* Variant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Variant.h; path = ../../../Framework/Variant.h; sourceTree = "<group>"; };
 		67CC03EE19420C3500260E1C /* MikrotikManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MikrotikManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		67CC03F119420C3500260E1C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		67CC03F319420C3500260E1C /* MikrotikManager.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MikrotikManager.1; sourceTree = "<group>"; };
+		67CC03FA19420CC000260E1C /* BigInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BigInt.cpp; path = ../../../Framework/BigInt.cpp; sourceTree = "<group>"; };
+		67CC03FB19420CC000260E1C /* BigInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BigInt.h; path = ../../../Framework/BigInt.h; sourceTree = "<group>"; };
+		67CC03FC19420CC000260E1C /* Cert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cert.cpp; path = ../../../Framework/Cert.cpp; sourceTree = "<group>"; };
+		67CC03FD19420CC000260E1C /* Cert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cert.h; path = ../../../Framework/Cert.h; sourceTree = "<group>"; };
+		67CC03FE19420CC000260E1C /* cgi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgi.cpp; path = ../../../Framework/cgi.cpp; sourceTree = "<group>"; };
+		67CC03FF19420CC000260E1C /* cgi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgi.h; path = ../../../Framework/cgi.h; sourceTree = "<group>"; };
+		67CC040019420CC000260E1C /* dbf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = dbf.cpp; path = ../../../Framework/dbf.cpp; sourceTree = "<group>"; };
+		67CC040119420CC000260E1C /* dbf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dbf.h; path = ../../../Framework/dbf.h; sourceTree = "<group>"; };
+		67CC040219420CC000260E1C /* DynamicString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DynamicString.cpp; path = ../../../Framework/DynamicString.cpp; sourceTree = "<group>"; };
+		67CC040319420CC000260E1C /* DynamicString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicString.h; path = ../../../Framework/DynamicString.h; sourceTree = "<group>"; };
+		67CC040419420CC000260E1C /* Exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Exception.cpp; path = ../../../Framework/Exception.cpp; sourceTree = "<group>"; };
+		67CC040519420CC000260E1C /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Exception.h; path = ../../../Framework/Exception.h; sourceTree = "<group>"; };
+		67CC040619420CC000260E1C /* gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gif.h; path = ../../../Framework/gif.h; sourceTree = "<group>"; };
+		67CC040719420CC000260E1C /* gifsave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gifsave.cpp; path = ../../../Framework/gifsave.cpp; sourceTree = "<group>"; };
+		67CC040819420CC000260E1C /* gifsave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gifsave.h; path = ../../../Framework/gifsave.h; sourceTree = "<group>"; };
+		67CC040919420CC000260E1C /* Graphic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Graphic.cpp; path = ../../../Framework/Graphic.cpp; sourceTree = "<group>"; };
+		67CC040A19420CC000260E1C /* Graphic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Graphic.h; path = ../../../Framework/Graphic.h; sourceTree = "<group>"; };
+		67CC040B19420CC000260E1C /* INI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = INI.cpp; path = ../../../Framework/INI.cpp; sourceTree = "<group>"; };
+		67CC040C19420CC000260E1C /* INI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = INI.h; path = ../../../Framework/INI.h; sourceTree = "<group>"; };
+		67CC040D19420CC000260E1C /* jpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jpeg.cpp; path = ../../../Framework/jpeg.cpp; sourceTree = "<group>"; };
+		67CC040E19420CC000260E1C /* jpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = jpeg.h; path = ../../../Framework/jpeg.h; sourceTree = "<group>"; };
+		67CC040F19420CC000260E1C /* lzh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lzh.cpp; path = ../../../Framework/lzh.cpp; sourceTree = "<group>"; };
+		67CC041019420CC000260E1C /* lzh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzh.h; path = ../../../Framework/lzh.h; sourceTree = "<group>"; };
+		67CC041119420CC000260E1C /* Queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Queue.cpp; path = ../../../Framework/Queue.cpp; sourceTree = "<group>"; };
+		67CC041219420CC000260E1C /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Queue.h; path = ../../../Framework/Queue.h; sourceTree = "<group>"; };
+		67CC041319420CC000260E1C /* RSAX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RSAX.cpp; path = ../../../Framework/RSAX.cpp; sourceTree = "<group>"; };
+		67CC041419420CC000260E1C /* RSAX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAX.h; path = ../../../Framework/RSAX.h; sourceTree = "<group>"; };
+		67CC041519420CC000260E1C /* Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Socket.cpp; path = ../../../Framework/Socket.cpp; sourceTree = "<group>"; };
+		67CC041619420CC000260E1C /* Socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Socket.h; path = ../../../Framework/Socket.h; sourceTree = "<group>"; };
+		67CC041719420CC000260E1C /* Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Stream.cpp; path = ../../../Framework/Stream.cpp; sourceTree = "<group>"; };
+		67CC041819420CC000260E1C /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stream.h; path = ../../../Framework/Stream.h; sourceTree = "<group>"; };
+		67CC041919420CC000260E1C /* Terminal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Terminal.cpp; path = ../../../Framework/Terminal.cpp; sourceTree = "<group>"; };
+		67CC041A19420CC000260E1C /* Terminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terminal.h; path = ../../../Framework/Terminal.h; sourceTree = "<group>"; };
+		67CC041B19420CC000260E1C /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread.cpp; path = ../../../Framework/thread.cpp; sourceTree = "<group>"; };
+		67CC041C19420CC000260E1C /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../../../Framework/thread.h; sourceTree = "<group>"; };
+		67CC041D19420CC000260E1C /* UDP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UDP.cpp; path = ../../../Framework/UDP.cpp; sourceTree = "<group>"; };
+		67CC041E19420CC000260E1C /* UDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UDP.h; path = ../../../Framework/UDP.h; sourceTree = "<group>"; };
+		67CC041F19420CC000260E1C /* Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Util.cpp; path = ../../../Framework/Util.cpp; sourceTree = "<group>"; };
+		67CC042119420CC000260E1C /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = ../../../Framework/Util.h; sourceTree = "<group>"; };
+		67CC042319420CC000260E1C /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector.cpp; path = ../../../Framework/Vector.cpp; sourceTree = "<group>"; };
+		67CC042419420CC000260E1C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = ../../../Framework/Vector.h; sourceTree = "<group>"; };
+		67CC042519420CC000260E1C /* XMLPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = XMLPath.cpp; path = ../../../Framework/XMLPath.cpp; sourceTree = "<group>"; };
+		67CC042619420CC000260E1C /* XMLPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLPath.h; path = ../../../Framework/XMLPath.h; sourceTree = "<group>"; };
+		67CC042719420CC000260E1C /* Y45Crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Y45Crypt.h; path = ../../../Framework/Y45Crypt.h; sourceTree = "<group>"; };
+		67CC042819420CC000260E1C /* Y45CryptV2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Y45CryptV2.cpp; path = ../../../Framework/Y45CryptV2.cpp; sourceTree = "<group>"; };
+		67CC042919420CC000260E1C /* Y45CryptV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Y45CryptV2.h; path = ../../../Framework/Y45CryptV2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +119,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67235B9319424AEB00733EC0 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				67CC03FA19420CC000260E1C /* BigInt.cpp */,
+				67CC03FB19420CC000260E1C /* BigInt.h */,
+				67CC03FC19420CC000260E1C /* Cert.cpp */,
+				67CC03FD19420CC000260E1C /* Cert.h */,
+				67CC03FE19420CC000260E1C /* cgi.cpp */,
+				67CC03FF19420CC000260E1C /* cgi.h */,
+				67CC040019420CC000260E1C /* dbf.cpp */,
+				67CC040119420CC000260E1C /* dbf.h */,
+				67CC040219420CC000260E1C /* DynamicString.cpp */,
+				67CC040319420CC000260E1C /* DynamicString.h */,
+				67CC040419420CC000260E1C /* Exception.cpp */,
+				67CC040519420CC000260E1C /* Exception.h */,
+				67CC040619420CC000260E1C /* gif.h */,
+				67CC040719420CC000260E1C /* gifsave.cpp */,
+				67CC040819420CC000260E1C /* gifsave.h */,
+				67CC040919420CC000260E1C /* Graphic.cpp */,
+				67CC040A19420CC000260E1C /* Graphic.h */,
+				67CC040B19420CC000260E1C /* INI.cpp */,
+				67CC040C19420CC000260E1C /* INI.h */,
+				67CC040D19420CC000260E1C /* jpeg.cpp */,
+				67CC040E19420CC000260E1C /* jpeg.h */,
+				67CC040F19420CC000260E1C /* lzh.cpp */,
+				67CC041019420CC000260E1C /* lzh.h */,
+				67CC041119420CC000260E1C /* Queue.cpp */,
+				67CC041219420CC000260E1C /* Queue.h */,
+				67CC041319420CC000260E1C /* RSAX.cpp */,
+				67CC041419420CC000260E1C /* RSAX.h */,
+				67CC041519420CC000260E1C /* Socket.cpp */,
+				67CC041619420CC000260E1C /* Socket.h */,
+				67CC041719420CC000260E1C /* Stream.cpp */,
+				67CC041819420CC000260E1C /* Stream.h */,
+				67CC041919420CC000260E1C /* Terminal.cpp */,
+				67CC041A19420CC000260E1C /* Terminal.h */,
+				67CC041B19420CC000260E1C /* thread.cpp */,
+				67CC041C19420CC000260E1C /* thread.h */,
+				67CC041D19420CC000260E1C /* UDP.cpp */,
+				67CC041E19420CC000260E1C /* UDP.h */,
+				67CC041F19420CC000260E1C /* Util.cpp */,
+				67CC042119420CC000260E1C /* Util.h */,
+				67CC042319420CC000260E1C /* Vector.cpp */,
+				67CC042419420CC000260E1C /* Vector.h */,
+				67CC042519420CC000260E1C /* XMLPath.cpp */,
+				67CC042619420CC000260E1C /* XMLPath.h */,
+				67CC042719420CC000260E1C /* Y45Crypt.h */,
+				67CC042819420CC000260E1C /* Y45CryptV2.cpp */,
+				67CC042919420CC000260E1C /* Y45CryptV2.h */,
+				67553CF11949F2B900D99FBD /* Variant.cpp */,
+				67553CF21949F2B900D99FBD /* Variant.h */,
+				0FB1F6D3196C4B2A003EB1FD /* whois.cpp */,
+				0FB1F6D4196C4B2A003EB1FD /* whois.h */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		67235B9419424B0E00733EC0 /* MikrotikLib */ = {
+			isa = PBXGroup;
+			children = (
+				67235B9819424CF100733EC0 /* librouteros.cpp */,
+				67235B9619424B9600733EC0 /* librouteros.h */,
+			);
+			name = MikrotikLib;
+			sourceTree = "<group>";
+		};
 		67CC03E519420C3500260E1C = {
 			isa = PBXGroup;
 			children = (
@@ -55,12 +199,16 @@
 				67CC03EE19420C3500260E1C /* MikrotikManager */,
 			);
 			name = Products;
-			sourceTree = "<group>";
+			path = /desenv/MikrotikManger/MikrotikManager;
+			sourceTree = "<absolute>";
 		};
 		67CC03F019420C3500260E1C /* MikrotikManager */ = {
 			isa = PBXGroup;
 			children = (
+				67235B9419424B0E00733EC0 /* MikrotikLib */,
+				67235B9319424AEB00733EC0 /* Framework */,
 				67CC03F119420C3500260E1C /* main.cpp */,
+				0FEC5EAB19461E2300D8EECB /* main.h */,
 				67CC03F319420C3500260E1C /* MikrotikManager.1 */,
 			);
 			path = MikrotikManager;
@@ -92,7 +240,7 @@
 		67CC03E619420C3500260E1C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Gustavo Campos";
 			};
 			buildConfigurationList = 67CC03E919420C3500260E1C /* Build configuration list for PBXProject "MikrotikManager" */;
@@ -117,7 +265,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67CC043919420CC000260E1C /* Terminal.cpp in Sources */,
+				67CC043A19420CC000260E1C /* thread.cpp in Sources */,
+				67235B9919424CF100733EC0 /* librouteros.cpp in Sources */,
+				67CC043119420CC000260E1C /* Graphic.cpp in Sources */,
+				67CC043F19420CC000260E1C /* Y45CryptV2.cpp in Sources */,
+				67CC042B19420CC000260E1C /* Cert.cpp in Sources */,
+				67CC043519420CC000260E1C /* Queue.cpp in Sources */,
+				67553CF31949F2B900D99FBD /* Variant.cpp in Sources */,
+				67CC043619420CC000260E1C /* RSAX.cpp in Sources */,
+				67CC043719420CC000260E1C /* Socket.cpp in Sources */,
+				67CC043B19420CC000260E1C /* UDP.cpp in Sources */,
+				67CC043D19420CC000260E1C /* Vector.cpp in Sources */,
+				67CC043019420CC000260E1C /* gifsave.cpp in Sources */,
+				67CC043E19420CC000260E1C /* XMLPath.cpp in Sources */,
+				67CC043319420CC000260E1C /* jpeg.cpp in Sources */,
+				67CC043819420CC000260E1C /* Stream.cpp in Sources */,
+				67CC042A19420CC000260E1C /* BigInt.cpp in Sources */,
+				67CC043219420CC000260E1C /* INI.cpp in Sources */,
+				0FB1F6D5196C4B2A003EB1FD /* whois.cpp in Sources */,
+				67CC043419420CC000260E1C /* lzh.cpp in Sources */,
+				67CC042E19420CC000260E1C /* DynamicString.cpp in Sources */,
+				67CC042D19420CC000260E1C /* dbf.cpp in Sources */,
+				67CC042F19420CC000260E1C /* Exception.cpp in Sources */,
 				67CC03F219420C3500260E1C /* main.cpp in Sources */,
+				67CC042C19420CC000260E1C /* cgi.cpp in Sources */,
+				67CC043C19420CC000260E1C /* Util.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +302,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -141,6 +314,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -156,9 +330,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/local/include;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OBJROOT = "$(SYMROOT)";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SYMROOT = /desenv/bin;
 			};
 			name = Debug;
 		};
@@ -167,7 +345,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -189,22 +367,48 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/local/include;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /opt/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OBJROOT = "$(SYMROOT)";
 				SDKROOT = macosx;
+				SYMROOT = /desenv/bin;
 			};
 			name = Release;
 		};
 		67CC03F819420C3500260E1C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../Framework,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-lc",
+					"-DDEBUG",
+					"-D_DEBUG",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		67CC03F919420C3500260E1C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../Framework,
+				);
+				OTHER_CPLUSPLUSFLAGS = "-lc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -227,6 +431,7 @@
 				67CC03F919420C3500260E1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
