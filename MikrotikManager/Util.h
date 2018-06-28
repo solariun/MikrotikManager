@@ -272,7 +272,7 @@ void Util_SetMaxCPU (unsigned long int nMax);
 
 clock_t Util_GetClock (void);
 
-uint32_t Util_CRC32 (unsigned char *block, unsigned int length, unsigned long crc_start);
+uint32_t Util_CRC32v2 (unsigned char *block, unsigned int length, uint32_t crc_start);
 
 void UTil_PrintDataToDebug (uint8_t* szSectionData, long int nDataLen);
 

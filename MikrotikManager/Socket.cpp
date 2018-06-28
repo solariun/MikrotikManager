@@ -30,18 +30,18 @@
      
  */
 
-#include <sys/socket.h>
 #include "Util.h"
 #include "Exception.h"
 #include <iostream>
 #include "Socket.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <sys/socket.h>
 #include <openssl/rand.h>
 
-static void sigpipe_handle(int x);
+//static void sigpipe_handle(int x);
 
-static char*		pass;
+//static char* pass;
 
 
 void Socket::DefaultInicialization ()
@@ -123,7 +123,7 @@ bool Socket::IsReady (int nTimeoutSeconds, int nTimeoutUSeconds)
 
     VERIFY ((nReturn = FD_ISSET (this->nSocket, &fdSet)) >= 0, "");
     
-	NOTRACE ("%s: Result: %u  %us %us\n", __FUNCTION__, nReturn, nTimeoutSeconds, nTimeoutUSeconds);
+	//TRACE ("%s: Result: %u  %us %us\n", __FUNCTION__, nReturn, nTimeoutSeconds, nTimeoutUSeconds);
 	
     if (nReturn > 0)
     {
@@ -226,7 +226,7 @@ bool Socket::Printf (long int nStrLen, const char* pszFormat, ...)
         
         va_end (vaArgs);
         
-		TRACE ("PRINTF: (%u) %s\n", nLen, pszTemp);
+		TRACE ("PRINTF: (%lu) %s\n", nLen, pszTemp);
 		
 		Send (nLen, pszTemp);
 
@@ -243,7 +243,7 @@ bool Socket::Send (long int nStrLen, const char* pszData)
         //signal (SIGPIPE, Socket::PipeReceive);
 
 
-        NOTRACE ("Sending: %s\n", pszData);
+        //TRACE ("Sending: %s\n", pszData);
         
 		VERIFY (IsWriteReady (15, 100), "Timeout de envio.");
 		
@@ -286,7 +286,7 @@ long int Socket::Read (int nStrLen, char* pszReceive, uint nTimeout)
         return 0;
     }
     
-    NOTRACE ("Socket::SafeRead: Readed %ld \n", nLen);
+    //TRACE ("Socket::SafeRead: Readed %ld \n", nLen);
 
     nLastReading = time (NULL);
 
@@ -380,7 +380,7 @@ bool Socket::Listen (int nPorta, int nBacklog)
 	 
 	if ((nRet = getaddrinfo ("0.0.0.0", szPorta, &hints, &res)) != 0)
 	{
-		NOTRACE ("TCP Listen Error: %s\n", gai_strerror (nRet));
+		//TRACE ("TCP Listen Error: %s\n", gai_strerror (nRet));
 		return false;
 	}
 		
@@ -403,7 +403,7 @@ bool Socket::Listen (int nPorta, int nBacklog)
 
     nTrue = 10;
     
-    VERIFY ((bind (this->nSocket, res->ai_addr, res->ai_addrlen)) >= 0, "");
+    VERIFY ((::bind (this->nSocket, res->ai_addr, res->ai_addrlen)) >= 0, "");
     
     this->isListen = true;
 
@@ -446,7 +446,7 @@ Socket* Socket::Accept (uint nTimeout)
     }
     catch (Socket* pSocket)
     {
-        NOTRACE ("%s\n", pSocket->GetExceptionMessage ());
+        //TRACE ("%s\n", pSocket->GetExceptionMessage ());
         
         if (pNSocket != NULL)
         {
@@ -468,9 +468,6 @@ Socket::Socket (int nSocket, sockaddr_in stSocketAddr)
 	DefaultInicialization ();
 	
 		{
-			int window = 1024  * 1;  // 1K
-			int  nNDelay = 1;
-
             this->nSocket = nSocket;
 
             int nLen;
@@ -649,7 +646,7 @@ void Socket::GetLocalAddress (struct sockaddr_in* cliaddr)
         len = sizeof(cliaddr); 
         getsockname(sockfd, (struct sockaddr *) cliaddr, &len); 
 		
-        //NOTRACE ("local address %s\n", inet_ntoa (cliaddr->sin_addr));
+        ////TRACE ("local address %s\n", inet_ntoa (cliaddr->sin_addr));
 } 
 
 
@@ -657,7 +654,7 @@ void Socket::GetLocalAddress (struct sockaddr_in* cliaddr)
 
 void Socket::IfException ()
 {
-	//NOTRACE ("EXCEPTION RISED FROM SOCKET\n");
+	////TRACE ("EXCEPTION RISED FROM SOCKET\n");
 }
 
 
@@ -673,12 +670,11 @@ int err_exit(char* string)
 }
 
 
-
-
+/*
 static void sigpipe_handle(int x)
 {
 }
-
+*/
 
 
 #define GetIP(x) inet_ntoa (x.sin_addr)
@@ -791,7 +787,6 @@ uint32_t Socket::CheckDataForReading ()
 
 bool Socket::CheckIfIsClosed ()
 {
-    int nError = 0;
     fd_set rfd;
     FD_ZERO(&rfd);
     FD_SET(nSocket, &rfd);
@@ -799,7 +794,6 @@ bool Socket::CheckIfIsClosed ()
     timeval tv = { 0 };
 
 
-    char chData;
 
 
     VERIFY (select(nSocket+1, &rfd, NULL, NULL, &tv) >= 0, "", true);

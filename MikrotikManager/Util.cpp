@@ -452,22 +452,22 @@ int Util_MatrixCode2of5 (const char* pszBarCode, char* pszReturnBuffer, long int
     
     strncpy (pszReturnBuffer, "1010", 4);
     
-    //NOTRACE ("Barcode: %s\n", pszBarCode);
+    ////TRACE ("Barcode: %s\n", pszBarCode);
     
     while (pszBarCode [0] != '\0')
     {
         szDeck [0] = pszBarCode [0];
         szDeck [1] = pszBarCode [1];
         
-        //NOTRACE ("Next: %d\n", pszBarCode [0]);
+        ////TRACE ("Next: %d\n", pszBarCode [0]);
         
         if (!IsNumber (szDeck [0])) return INT2OF5_INV_CHARINBCOD;
         if (!IsNumber (szDeck [1])) return INT2OF5_INV_CHARINBCOD;
         
         pszBarCode += 2;  
         
-        //NOTRACE ("Decks: %c %c \n", szDeck [0], szDeck [1]);
-        //NOTRACE ("Next: %d\n", pszBarCode [0]);
+        ////TRACE ("Decks: %c %c \n", szDeck [0], szDeck [1]);
+        ////TRACE ("Next: %d\n", pszBarCode [0]);
         
         /* Gera o DeckWork */
         
@@ -475,14 +475,14 @@ int Util_MatrixCode2of5 (const char* pszBarCode, char* pszReturnBuffer, long int
         for (nCount=0; nCount < 5; nCount++)
         {
             szDackWork [ nCount * 2] = m_szCharTable [szDeck [0] - '0'][nCount]; 
-            //NOTRACE ("DeckB: %d - char: %c (%d-%c)\n", (nCount * 2), szDackWork [ nCount * 2], szDeck [0] - '0', szDeck [0]);
+            ////TRACE ("DeckB: %d - char: %c (%d-%c)\n", (nCount * 2), szDackWork [ nCount * 2], szDeck [0] - '0', szDeck [0]);
         }
         
         /* Gera para o DackS */
         for (nCount=0; nCount < 5; nCount++)
         {
             szDackWork [ nCount * 2 + 1] = m_szCharTable [szDeck [1] - '0'][nCount]; 
-            //NOTRACE ("DeckS: %d - char: %c (%d-%c)\n", (nCount * 2 + 1), szDackWork [ nCount * 2 + 1], szDeck [1] - '0', szDeck [1]);
+            ////TRACE ("DeckS: %d - char: %c (%d-%c)\n", (nCount * 2 + 1), szDackWork [ nCount * 2 + 1], szDeck [1] - '0', szDeck [1]);
         }
         
         for (nCount=0; nCount < 10; nCount++)
@@ -602,8 +602,8 @@ bool Util_IPMaskValidating (char* pszIP, char* pszMask)
 	
 	char szData [10 + 1];
 	int  nCount;
-	int  nMaskLen;
-	int  nIPLen; 
+	size_t  nMaskLen;
+	size_t  nIPLen;
 	char chData;
 	int  nCurrent;
 	int  nCurChar;
@@ -611,8 +611,8 @@ bool Util_IPMaskValidating (char* pszIP, char* pszMask)
 	
 	Verify (pszIP != NULL, "The given IP is NULL.",false);
 	Verify (pszMask != NULL, "The given Mask is NULL.", false);
-	Verify ((nMaskLen - strlen (pszMask)) <= 31, "Mask seams to be invalid upon lenght higher than max possible.", false);
-	Verify ((nIPLen == strlen (pszIP)) <= 15, "IP seams to be invalid upon lenght higher than max possible.", false);
+	Verify ((nMaskLen = strlen (pszMask)) <= 31, "Mask seams to be invalid upon lenght higher than max possible.", false);
+	Verify ((nIPLen = strlen (pszIP)) &&  nIPLen<= 15, "IP seams to be invalid upon lenght higher than max possible.", false);
 	
 	memset ((void*) AMask, '\0', sizeof (AMask));
 	
@@ -740,7 +740,7 @@ inline bool Util_Base64Encode (uint8_t* pszDataRaw, uint8_t* pszReturnBase64)
 	pszReturnBase64 [3] = szBase64Dic [(uint8_t) ((pszDataRaw [2] << 2)) >> 2];
 	pszReturnBase64 [4] = '\0';
 	
-	NOTRACE  (" Data: [%-.2d] [%-.2d] [%-.2d] [%-.2d]\n", pszReturnBase64 [0], pszReturnBase64 [1], pszReturnBase64 [2], pszReturnBase64 [3]); 
+	////TRACE  (" Data: [%-.2d] [%-.2d] [%-.2d] [%-.2d]\n", pszReturnBase64 [0], pszReturnBase64 [1], pszReturnBase64 [2], pszReturnBase64 [3]);
 	return true;
 }
 
@@ -770,14 +770,14 @@ inline bool Util_Base64Decode (uint8_t* pszDataRaw, uint8_t* pszReturnBase64)
 	pszReturnBase64 [2] = Util_GetBase64RawValue (pszReturnBase64 [2]);
 	pszReturnBase64 [3] = Util_GetBase64RawValue (pszReturnBase64 [3]);
 
-	NOTRACE  (" Data: [%-.2d] [%-.2d] [%-.2d] [%-.2d]\n", pszReturnBase64 [0], pszReturnBase64 [1], pszReturnBase64 [2], pszReturnBase64 [3]); 
+	////TRACE  (" Data: [%-.2d] [%-.2d] [%-.2d] [%-.2d]\n", pszReturnBase64 [0], pszReturnBase64 [1], pszReturnBase64 [2], pszReturnBase64 [3]);
 
 	pszDataRaw [0] = ((pszReturnBase64 [0] << 2) | (pszReturnBase64 [1] >> 4));
 	pszDataRaw [1] = ((pszReturnBase64 [1] << 4) | (pszReturnBase64 [2] >> 2));
 	pszDataRaw [2] = ((pszReturnBase64 [2] << 6) | pszReturnBase64 [3]);
 	pszDataRaw [3] = '\0';
 	
-	NOTRACE  (" Data: [%-.2u] [%-.2u] [%-.2u]\n", pszDataRaw [0], pszDataRaw [1], pszDataRaw [2]);
+	////TRACE  (" Data: [%-.2u] [%-.2u] [%-.2u]\n", pszDataRaw [0], pszDataRaw [1], pszDataRaw [2]);
     
     return true;
 }
@@ -788,7 +788,7 @@ long int Util_DecodeFromBase64 (const char* pszBase64String, const long int nB64
 	long int nCount;
 	uint8_t  nDataPiece [6];
 	uint8_t  nB64Decoded [5];
-	long int nReturn = 0;
+	//long int nReturn = 0;
 	
 	Verify (pszBase64String != NULL, "The Given pszBase64String is NULL.", -1);
 	Verify (pszRetString != NULL,    "The Given pszRetString is NULL.", -1);
@@ -814,7 +814,7 @@ long int Util_EncodeToBase64 (const char* pszString, const long int nStrLen, cha
 	long int	nCount;
 	uint8_t		nEncodeData [5];
 	uint8_t		nStrData [5] = {1,2,3,4};
-	uint		nStrOffSet;
+	long int		nStrOffSet;
 	long int	nReturn;
 	
 	Verify (pszString != NULL, "The given pszString is NULL.", -1);
@@ -923,7 +923,7 @@ bool TUtil_TrimString (char* pszString, int nLen)
     Verify (pszString != NULL, "pszString is NULL, invalid.", false);
     Verify (nLen > 0, "Error, nLen == 0, must be gratter than zero.", false);
 
-    uint nStart, nStop;
+    //uint nStart, nStop;
     int nCount;
 
     /* Trimming leftwards first */
@@ -1239,7 +1239,7 @@ bool TUtil_GenerateRandomKey (char* pszKey, int nLen)
     float fRand;
     Verify (pszKey != NULL, "Chave informada invalida.", false);
     
-    srand (time (NULL));
+    srand ((unsigned int) time (NULL));
     
     pszKey [0] = '\0';
     
@@ -1495,7 +1495,7 @@ bool TUtil_MD5hex (const char *src, char *hex_output)
 
     md5_init (&state);
 	
-    Verify (md5_append (&state, (const md5_byte_t *) src, strlen (src)) == true, "Erro processing MD5 encryptation.", false);
+    Verify (md5_append (&state, (const md5_byte_t *) src, (int) strlen (src)) == true, "Erro processing MD5 encryptation.", false);
 	
     Verify (md5_finish (&state, digest) == true, "Error finalising MD5 encryptation.", false);
 	
@@ -1561,7 +1561,7 @@ uint64_t TUtiL_crc64Base2Binary (const char *seq, long int nLen, uint64_t crc)
 			for (j = 0; j < 8; j++)
 			{
 				if (part & 1)
-					part = (part >> 1) ^ ((long long int) POLY64REV + 12398929334LL << 3 * 3);
+					part = (part >> 1) ^ ((long long int) ((POLY64REV ^ 1223465324LL) << 16) & POLY64REV);
 				else
 					part >>= 1;
 			}
@@ -1577,7 +1577,7 @@ uint64_t TUtiL_crc64Base2Binary (const char *seq, long int nLen, uint64_t crc)
      architecture-dependent word order
      */
 	
-	NOTRACE ("CRC: [%-.10llX]\n", crc);
+	////TRACE ("CRC: [%-.10llX]\n", crc);
 	
     return crc;
 }
@@ -1601,7 +1601,7 @@ uint64_t TUtiL_crc64Base3Binary (const char *seq, long int nLen, uint64_t crc)
 			for (j = 0; j < 8; j++)
 			{
 				if (part & 1)
-					part = (part >> 1) ^ ((long long int)  POLY64REV + 33298550399123LL << 4 * 3);
+					part = (part >> 1) ^ ((long long int)  ((POLY64REV ^ 33298550399123LL) << 4) & POLY64REV);
 				else
 					part >>= 1;
 			}
@@ -1617,7 +1617,7 @@ uint64_t TUtiL_crc64Base3Binary (const char *seq, long int nLen, uint64_t crc)
      architecture-dependent word order
      */
 	
-	NOTRACE ("CRC: [%-.10llX]\n", crc);
+	////TRACE ("CRC: [%-.10llX]\n", crc);
 	
     return crc;
 }
@@ -1659,7 +1659,7 @@ uint64_t TUtiL_crc64Binary (const char *seq, long int nLen, uint64_t crc)
      architecture-dependent word order
      */
 	
-	NOTRACE ("CRC: [%-.10llX]\n", crc);
+	//TRACE ("CRC: [%-.10llX]\n", crc);
 	
     return crc;
 }
@@ -1683,7 +1683,7 @@ bool TUtil_IsReady (int nFD, int nTimeoutSeconds, int nTimeoutUSeconds)
     bool              bReturn;
     int               nReturn;
 
-    Verify (nFD >= 0, "Objeto não incializado.", false);
+    Verify (nFD >= 0, "Objeto not intialized.", false);
    
     tmVal.tv_sec  = nTimeoutSeconds;
     tmVal.tv_usec = nTimeoutUSeconds;
@@ -1732,7 +1732,7 @@ void Util_CPUReduce ()
 	
 	if (nCount++ % nMaxCPUSteps == 0)
 #ifndef WIN32
-	usleep (nGlobalSleep);
+	usleep ((useconds_t) nGlobalSleep);
 #else
 	sleep (nGlobalSleep);
 #endif
@@ -1750,10 +1750,10 @@ double Util_Show_CPU_Usage (bool bChild)
 
     if (clktck == 0) clktck = sysconf(_SC_CLK_TCK);
 
-	clock_t    nReal;
-    clock_t    nUser;
-    clock_t    nSystem;
-    clock_t    nTime;
+	clock_t    nReal = 0;
+    clock_t    nUser = 0;
+    clock_t    nSystem = 0;
+    clock_t    nTime = 0;
     struct  tms          stTimes;
 
     static  double       dPorcentage = 0;
@@ -1785,7 +1785,7 @@ double Util_Show_CPU_Usage (bool bChild)
             dPorcentage = 0;
 
 
-        TRACE ("CPU: %.1f%% ( (usr)[%lu] (sys)[%lu] - (Time)[%u] - (Real)[%lu] )  \r", dPorcentage, nUser, nSystem, nTime, nReal);
+        TRACE ("CPU: %.1f%% ( (usr)[%lu] (sys)[%lu] - (Time)[%lu] - (Real)[%lu] )  \r", dPorcentage, nUser, nSystem, nTime, nReal);
 
         //TRACE ("CPU: %.2f%%  CLK_TCK: [%u]  \n\n", dPorcentage, nReal, stTimes.tms_utime, stTimes.tms_stime, CLOCKS_PER_SEC);
     }
@@ -1830,7 +1830,7 @@ double Util_CPU_GetUsage (bool bChild)
     else
         dPorcentage = 0;
 	
-	TRACE ("CPU: %f%% (%f, %f, %f) Type:  \n\n", dPorcentage, nReal, stTimes.tms_utime, stTimes.tms_stime, bChild == true ? "Child" : "Father");
+    TRACE ("CPU: %f%% (%lu, %lu, %lu) Type: [%s] \n\n", dPorcentage, nReal, stTimes.tms_utime, stTimes.tms_stime, bChild == true ? "Child" : "Father");
 	
 	Util_CPU_Init ();
 
@@ -1864,7 +1864,7 @@ double Util_CPU_Usage2 (bool bChild)
 
     if (nReal > 0) dPorcentage = (double) (nUser + nSystem) / nReal;
 
-	printf ("CPU: %f%% (%f, %f, %f) Type: %s \n\n", dPorcentage, nReal, stTimes.tms_utime, stTimes.tms_stime, bChild == true ? "Child" : "Father");
+    printf ("CPU: %f%% (%lu, %lu, %lu) Type: [%s] \n\n", dPorcentage, nReal, stTimes.tms_utime, stTimes.tms_stime, bChild == true ? "Child" : "Father");
 	
     if (nReal >= 2 && nMaxCPUUsage > 0)
     {		
@@ -1966,15 +1966,15 @@ clock_t Util_GetClock (void)
  *				reached. the crc32-checksum will be
  *				the result.
  */
-uint32_t Util_CRC32 (unsigned char *block, unsigned int length, unsigned long crc_start)
+uint32_t Util_CRC32v2 (unsigned char *block, unsigned int length, uint32_t crc_start)
 {
-	register unsigned long crc;
-	unsigned long i;
+	uint32_t crc;
+	uint32_t i;
 	static bool bTable = false;
 	
 	if (bTable == false)
 	{
-		unsigned long crc, poly;
+		uint32_t crc, poly;
 		int i, j;
 		
 		poly = 0xEDB88320L;
@@ -2013,7 +2013,7 @@ void UTil_PrintDataToDebug (uint8_t* szSectionData, long int nDataLen)
 {
 	long int nCount;
 	long int nCount1;
-	int nLen;
+	long int nLen;
 	char szPData [20];
 	
 #ifdef _DEBUG
@@ -2045,7 +2045,7 @@ void UTil_PrintDataToDebug (uint8_t* szSectionData, long int nDataLen)
 		printf ("  [%s]\n", szPData);
 	}	
 	
-    printf ("CHECKSUM  [%lX-%lX]\n", Util_CRC32 (szSectionData, nDataLen, 0xFFFF), Util_CRC32 (szSectionData, nDataLen, 0x0));
+    printf ("CHECKSUM  [%X-%X]\n", Util_CRC32v2 (szSectionData, (unsigned int) nDataLen, (uint32_t) 0xFFFF), Util_CRC32v2 (szSectionData, (unsigned int) nDataLen, (uint32_t) 0x0));
 
     fflush (stdout);
 #endif
@@ -2160,10 +2160,16 @@ const char* TUtil_GetPtrFromToken (char chToken, const char* pszText, uint32_t n
         if (pszText [nCount] == chToken)
         {
             if (--nToken == 0)
+            {
                 if (nCount + 1 == nTextSize)
+                {
                     return "";
+                }
                 else
-                    return (const char*) &pszText [nCount];                
+                {
+                    return (const char*) &pszText [nCount];
+                }
+            }
         }
     }
     
@@ -2192,7 +2198,7 @@ char* TUtil_GenerateUID (const char* pszData, uint32_t nDataSize, char* pszRetur
     i64Deck [2]._data = TUtiL_crc64Base2Binary (pszData, nDataSize, (uint64_t) i64Deck [0]._data ^ 0xF4589AB2FLLU);
     
     
-    NOTRACE ("\n\tCRC1: [%llX]\n\tCRC2: [%llX]\n\tCRC3: [%llX]\n", i64Deck [0]._data, i64Deck [1]._data, i64Deck [2]._data); 
+    //TRACE ("\n\tCRC1: [%llX]\n\tCRC2: [%llX]\n\tCRC3: [%llX]\n", i64Deck [0]._data, i64Deck [1]._data, i64Deck [2]._data);
            
     snprintf (pszReturn, nRetLen, "%08X-%04X-%04X-%04X-%04X-%08X", 							
               i64Deck [1].Values32b [0],
@@ -2225,7 +2231,7 @@ uint64_t TUtil_GenerateAssign (const char* pszData, uint32_t nDataSize, char* ps
     i64Deck [2]._data = TUtiL_crc64Base2Binary (pszData, nDataSize, (uint64_t) i64Deck [0]._data ^ 0xF458934AFLLU);
     
     
-    NOTRACE ("\n\tCRC1: [%llX]\n\tCRC2: [%llX]\n\tCRC3: [%llX]\n", i64Deck [0]._data, i64Deck [1]._data, i64Deck [2]._data); 
+    //TRACE ("\n\tCRC1: [%llX]\n\tCRC2: [%llX]\n\tCRC3: [%llX]\n", i64Deck [0]._data, i64Deck [1]._data, i64Deck [2]._data);
     
     snprintf (pszReturn, nRetLen, "%08X-%04X-%04X%04X-%04X-%08X", //36posicoes.
               i64Deck [1].Values32b [0],
@@ -2243,9 +2249,8 @@ bool TUtil_AssignString (string& strData)
 {
     char szData [50];
     
-    Verify (TUtil_GenerateAssign (strData.c_str(), strData.length(), szData, sizeof (szData)-1) != NULL,
-            "Error, no data created.", false);
-
+    TUtil_GenerateAssign (strData.c_str(), (uint32_t) strData.length(), szData, sizeof (szData)-1);
+    
     strData = strData + ":";
     strData.append(szData, strlen (szData));
     

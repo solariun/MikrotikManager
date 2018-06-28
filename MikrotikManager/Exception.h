@@ -72,12 +72,12 @@ static string strGlobalStrError = "";
 #define YYTRACE(x,z...) {fprintf (stderr, "YMSG: %s(%u):", __FUNCTION__, __LINE__); fprintf (stderr, x, ##z);}
 
 #ifdef _DEBUG
-#define TRACE(x,z...) {fprintf (stderr, "DMSG: %s(%u):", __FUNCTION__, __LINE__); fprintf (stderr, x, ##z);}
+#define TRACE(x,z...) { fprintf (stderr, "DMSG: %s(%u):", __FUNCTION__, __LINE__); fprintf (stderr, x, ##z);}
 #else
-#define TRACE NOTRACE 
+#define TRACE(x,z...) 1 ? (void) 0 : (void)fprintf (stderr, x, ##z)
 #endif
 
-#define NOTRACE //
+#define NOTRACE(x,z...) 1 ? (void) 0 : (void)fprintf 
 
 #define EXCEPTION_MESSAGE_SIZE		512
 #define EXCEPTION_MESSAGE2_SIZE		320

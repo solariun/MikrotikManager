@@ -58,7 +58,7 @@ map<string, struct IPUsage> pHostList;
 string strIPInterfaceMonitoring;
 bool bIPMonitoringConnected = false;
 bool bIPMonitoringIP = false;
-
+bool bProfileMonitor = false;
 
 
 map<string, struct MktProfile *> mapProfiling;
@@ -407,7 +407,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
 
     uint nX, nY;
 
-    nX  = 5, nY = 4;
+    nX  = 5; nY = 4;
 
 #define BOXX 7
 #define BOXY 20
@@ -451,7 +451,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
 
         Term.ColorBright();
         Term.Locate (nX + 1, nY + 2);
-        printf (pHost->szSrcAddress);
+        printf ("%s", pHost->szSrcAddress);
 
 
         Term.Color (0, 3, nBGColor);
@@ -528,11 +528,10 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
                 nCount = 0;
                 for (vector <struct IPConnectionMonitor>::iterator iteMon = pVectori->pvecConnections.begin(); iteMon != pVectori->pvecConnections.end() && nX < nLines + 2; iteMon++)
                 {
-                    if (&(*iteMon) != NULL)
                     {
                         Term.Locate (nX++, nColumns + 1);
                         Term.ColorNormal ();
-                        if (((*iteMon).nRX / 1024) > ServerAttr.nRXLimit / 0.5)
+                        if ((iteMon->nRX / 1024) > ServerAttr.nRXLimit / 0.5)
                         {
                             Term.Color (0, 7, 1);
                             Term.ColorBright();
@@ -540,7 +539,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
 
                             bInfo = true;
                         }
-                        else if  (((*iteMon).nTX / 1024) > ServerAttr.nRXLimit / 0.5)
+                        else if  ((iteMon->nTX / 1024) > ServerAttr.nRXLimit / 0.5)
                         {
                             Term.Color (0, 7, 6);
                             Term.ColorBright();
@@ -549,7 +548,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
                             bInfo = true;
                         }
 
-                        printf ("%-15s %7.1f %7.1f", (*iteMon).szDstAddress.c_str(),(double)(*iteMon).nRX / 1024 , (double)(*iteMon).nTX /1024);
+                        printf ("%-15s %7.1f %7.1f", iteMon->szDstAddress.c_str(),(double)iteMon->nRX / 1024 , (double)iteMon->nTX /1024);
 
                         if (bInfo == true)
                         {
@@ -561,7 +560,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
                             fflush (stdout);
                             try
                             {
-                                if ((objWhois.Lookup ((*iteMon).szDstAddress.c_str(), (*iteMon).szDstAddress.length())) ==true)
+                                if ((objWhois.Lookup (iteMon->szDstAddress.c_str(), iteMon->szDstAddress.length())) ==true)
                                 {
                                     if (objWhois ["OrgName"] != NULL)
                                     {
@@ -586,7 +585,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
                             }
                             catch (Exception *pEx)
                             {
-                                //Just catch and follow from there, no need to do anything, it will carried out outomatically.
+                                //Just catch and follow from there, no need to do anything, it will be carried out automatically.
                             }
 
                         }
@@ -611,7 +610,7 @@ void ShowUsageBoxes (map<string, struct IPUsage>& pHostList)
          if (&(*iteMon) != NULL)
          {
          Term.Locate (nX++, nColumns + 1);
-         Term.ColorInvert(); printf ("  %-29s %8u %8u", "", (*iteMon).nTX, (*iteMon).nRX);
+         Term.ColorInvert(); printf ("  %-29s %8u %8u", "", iteMon->nTX, iteMon->nRX);
          }
          }
          
@@ -651,7 +650,9 @@ void ProfileHandler (struct ros_result *result)
     if (result->trap)
     {
         printf("!trap Error following: \n");
+        bProfileMonitor = false;
     }
+    
     if (result->fatal)
     {
         printf("!fatal: \n");
@@ -661,6 +662,8 @@ void ProfileHandler (struct ros_result *result)
         bOK = true;
     }
 
+    //printf ("bOK: [%s] - Fatal: [%s] Words: [%d]\n", bOK ? "true" : "false", result->fatal ? "true" : "false", result->sentence->words);
+    
     for (i =1; i < result->sentence->words; ++i)
     {
         //printf(">%s\n", result->sentence->word[i]);
@@ -674,61 +677,63 @@ void ProfileHandler (struct ros_result *result)
         }
     }
 
+    
     if (bOK == true)
     {
         objVar = strData;
 
-
+        //TRACE ("data: [%s] objVar=[%d]\n", strData.c_str(), objVar.GetCounter());
+        
         try
         {
-            if (objVar.GetCounter() > 1)
+
+            if (bFirst == true)
             {
-
-                if (bFirst == true)
+                map<string, struct MktProfile*>::iterator mapProfilei;
+                //Zeroing data for next collecting event.
+                for (mapProfilei = mapProfiling.begin(); mapProfilei != mapProfiling.end(); mapProfilei ++)
                 {
-                    map<string, struct MktProfile*>::iterator mapProfilei;
-                    //Zeroing data for next collecting event.
-                    for (mapProfilei = mapProfiling.begin(); mapProfilei != mapProfiling.end(); mapProfilei ++)
-                    {
-                        mapProfilei->second->nUsage = 0;
-                    }
-                    
-                    bFirst = false;
+                    mapProfilei->second->nUsage = 0;
                 }
+                
+                bFirst = false;
+            }
 
-                struct MktProfile* pProfile;
-
-
-                string strType = objVar ["name"];
-
-                if (mapProfiling.find(strType.c_str()) == mapProfiling.end())
-                {
-                    pProfile = new struct MktProfile;
-                    pProfile->nUsage = 0;
-                }
-                else
-                {
-                    pProfile = mapProfiling.find (strType)->second;
-                }
+            struct MktProfile* pProfile;
 
 
-                pProfile->strType = objVar ["name"];
-                pProfile->nUsage += objVar.GetInteger ("usage");
+            string strType = objVar ["name"];
 
-                //TRACE ("Counter: [%u] [%s]\n", objVar.GetCounter(), strData.c_str());
-
-                strData = "";
-
-                mapProfiling [strType] = pProfile;
+            if (mapProfiling.find(strType.c_str()) == mapProfiling.end())
+            {
+                pProfile = new struct MktProfile;
+                pProfile->nUsage = 0;
             }
             else
+            {
+                pProfile = mapProfiling.find (strType)->second;
+            }
+
+
+            pProfile->strType = objVar ["name"];
+            pProfile->nUsage += objVar.GetInteger ("usage");
+
+            //TRACE ("Counter: [%u] [%s]\n", objVar.GetCounter(), objVar["name"]);
+
+            strData = "";
+
+            mapProfiling [strType] = pProfile;
+
+            
+            if (strcmp(objVar["name"], "total") == 0)
             {
                 /* Sorting procedures */
                 vShowProfile.clear();
 
                 map<string, struct MktProfile*>::iterator mapProfilei;
 
-                nTotalProfiling = 0;
+                nTotalProfiling = 1;
+                
                 for (mapProfilei = mapProfiling.begin(); mapProfilei != mapProfiling.end(); mapProfilei ++)
                 {
                     vShowProfile.push_back  (mapProfilei->second);
@@ -744,8 +749,9 @@ void ProfileHandler (struct ros_result *result)
 
                 for (vProfilei = vShowProfile.begin(); vProfilei != vShowProfile.end(); vProfilei++)
                 {
-                    //TRACE ("Name: %-40s %u\n", (*vProfilei)->strType.c_str(), (*vProfilei)->nUsage);
+                    //TRACE ("Total: [%d] Name: %-40s %u\n",nTotalProfiling,  (*vProfilei)->strType.c_str(), (*vProfilei)->nUsage);
                 }
+                
             }
 
         }
@@ -1062,7 +1068,7 @@ void Render ()
 
     Term.Color (1, 4 , 4);
 
-    Term.Box (37, nColumns - 30, vShowProfile.size() + 37 + 1, nColumns, "Processing usage");
+    Term.Box (37, nColumns - 30,(int) vShowProfile.size() + 37 + 1, nColumns, "Processing usage");
 
     vector<struct MktProfile*>::iterator vProfilei;
 
@@ -1071,7 +1077,7 @@ void Render ()
         nCount = 0;
         uint32_t nPorcentage;
 
-        Term.Locate (vShowProfile.size() + 37 + 2, nColumns-30); printf ("Cycle:%-24u", nTotalProfiling);
+        Term.Locate ((int)vShowProfile.size() + 37 + 2, nColumns-30); printf ("Cycle:%-24u", nTotalProfiling);
 
         if (nTotalProfiling > 0) for (vProfilei = vShowProfile.begin(); vProfilei != vShowProfile.end(); vProfilei++)
         {
@@ -1117,7 +1123,7 @@ void Render ()
     if (mapInterfaces.size() > 0)
     {
         Term.Color (0, 0, 7);
-        Term.Locate (nCount++ + nLines - mapInterfaces.size() - 1, 1); printf ("%*s\n", (nColumns - 32) * -1, "ACT| Interface Name       | Type     | TX           | RX           | TX Errors |RX Errors |TX Drops  | RX Drops");
+        Term.Locate ((int) (nCount++ + nLines - mapInterfaces.size() - 1), 1); printf ("%*s\n", (nColumns - 32) * -1, "ACT| Interface Name       | Type     | TX           | RX           | TX Errors |RX Errors |TX Drops  | RX Drops");
 
 
         fflush (stdout);
@@ -1140,7 +1146,7 @@ void Render ()
             }
 
 
-            Term.Locate (nCount++ + nLines - mapInterfaces.size() - 1, 1); printf ("%*s\r %c | %-20s | %-8s | %8.1f Kbps| %8.1f Kbps| %8u  | %8u | %8u | %8u", nColumns - 32, "",
+            Term.Locate ((int)(nCount++ + nLines - mapInterfaces.size() - 1), 1); printf ("%*s\r %c | %-20s | %-8s | %8.1f Kbps| %8.1f Kbps| %8u  | %8u | %8u | %8u", nColumns - 32, "",
                                                              mapInterfacei->second->strDisable [0] == 'f' ? 'R' : 'X',
                                                              mapInterfacei->second->strName.c_str(),
                                                              mapInterfacei->second->strType.c_str(),
@@ -1471,7 +1477,7 @@ void IPMonitoringHandler (struct ros_result *result)
                 /* First lets show for developing procedures */
 
                 struct IPMonitoring* pIPMonitor;
-                struct IPConnectionMonitor* pIPConn;
+                //struct IPConnectionMonitor* pIPConn;
 
                 struct IPUsage* pIPUsage = NULL;
 
@@ -1582,12 +1588,12 @@ void IPMonitoringHandler (struct ros_result *result)
                         if (pIPUsage->szSrcAddress [0] == 'T')
                         {
                             pIPUsage->nCountConnections = nTotal;
-                            pIPUsage->pvecConnections;
+                            //pIPUsage->pvecConnections;
                             nTotal = 0;
                         }
                         else
                         {
-                            pIPUsage->nCountConnections = pIPMonitor->vecConnections.size();
+                            pIPUsage->nCountConnections = (uint32_t) pIPMonitor->vecConnections.size();
                             pIPUsage->pvecConnections = pIPMonitor->vecConnections;
                         }
 
@@ -1790,6 +1796,7 @@ int main(int nArgs, char *pszArgs [])
         pRouter.ProcessLoopOnce();
         //Term.EndScroll ();
 
+        
         if (bIPMonitoringIP == false)
         {
             pRouter.SendCommand ((const char*) strTouchString.c_str(), IPUsageHandle , 200);
@@ -1803,13 +1810,16 @@ int main(int nArgs, char *pszArgs [])
             bIPMonitoringConnected = true;
         }
 
-
+        
+        if(bProfileMonitor == false)
+        {
+             pRouter.SendCommand ("/tool/profile =freeze-frame-interval=5", ProfileHandler, 106);
+            bProfileMonitor = true;
+        }
 
         pRouter.SendCommand ("/ip/dhcp-server/lease/print ", IPNameStructure, 101);
 
         pRouter.SendCommand ("/system/resource/print ", ResourceHandler, 105);
-
-        pRouter.SendCommand ("/tool/profile =duration=2 ", ProfileHandler, 106);
 
         pRouter.SendCommand ("/system/health/print ", HealthHandler, 110);
 
@@ -1831,7 +1841,7 @@ int main(int nArgs, char *pszArgs [])
         fflush (stdout);
 
 
-        sleep (5);
+        sleep (2);
 
         Term.ResetAttr();
         Term.Cls ();

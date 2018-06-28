@@ -103,8 +103,8 @@ public:
 	int DisableCanonical ();
 	int ResetTerminal ();
 	static int RGB (unsigned int R, unsigned int G, unsigned int B);
-	uint GetColorByRGB (char* pszRGB);
-	void SetColorByRGB (char* pszFGRGB, char* pszBGRGB);
+	uint GetColorByRGB (const char* pszRGB);
+	void SetColorByRGB (const char* pszFGRGB, const char* pszBGRGB);
 	void SetColor (uint nFGColor, uint nBGColor);
 
 	/* Direct Terminal output and input Functions*/ 
@@ -133,7 +133,7 @@ public:
 	void EnableGraphicChar (bool bSet);
 	char GetKey ();
 
-	void Box (int nX, int nY, int nX2, int nY2, char* pszTitle);
+	void Box (int nX, int nY, int nX2, int nY2, const char* pszTitle);
 	void ClearBox (int nX, int nY, int nX2, int nY2);
 	
 	void RestoreCursorPosition ();

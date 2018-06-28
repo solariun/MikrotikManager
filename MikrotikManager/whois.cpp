@@ -39,7 +39,7 @@ static map<string, struct WhoisCache> mapWhoisCache;
 
 void whois::IfException()
 {
-    YYTRACE ("Whois, Error handler activated.");
+    NOTRACE ("Whois, Error handler activated.");
 }
 
 whois::whois ()
@@ -131,13 +131,13 @@ bool whois::Lookup (const char* pszValue, uint16_t nStrLen)
 
         strValue.append (pszValue, nStrLen);
 
-        //TRACE ("Value: [%s]\n", strValue.c_str());
+        NOTRACE ("Value: [%s]\n", strValue.c_str());
 
         mapIterator = mapWhoisCache.find (strValue.c_str());
 
         if (mapIterator != mapWhoisCache.end())
         {
-            //TRACE (" *** CACHE ***"); //sleep (1);
+            NOTRACE (" *** CACHE ***"); //sleep (1);
             mapWhoisFields = mapIterator->second.mapWhoisFields;
 
             return true;
@@ -169,7 +169,7 @@ bool whois::Lookup (const char* pszValue, uint16_t nStrLen)
         return false;
     }
 
-    //TRACE ("CACHE: [%u]\n", nCacheTimeout);
+    NOTRACE ("CACHE: [%u]\n", nCacheTimeout);
 
     if (nCacheTimeout > 0) ProcessCache (pszValue, nStrLen, mapWhoisFields);
     

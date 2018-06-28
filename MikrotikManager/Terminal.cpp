@@ -531,7 +531,7 @@ char Terminal::GetKey ()
 /*
  * Desenha um box na tela, podendo usar inclusive um título
  */
-void Terminal::Box (int nX, int nY, int nX2, int nY2, char* pszTitle)
+void Terminal::Box (int nX, int nY, int nX2, int nY2, const char* pszTitle)
 {
 	int nCount;
 	int nCount2;
@@ -648,7 +648,7 @@ void Terminal::SetColor (uint nFGColor, uint nBGColor)
 }
 
 
-void Terminal::SetColorByRGB (char* pszFGRGB, char* pszBGRGB)
+void Terminal::SetColorByRGB (const char* pszFGRGB, const char* pszBGRGB)
 {
 	uint nColor;
 	uint nBGColor;
@@ -678,7 +678,7 @@ void Terminal::SetColorByRGB (char* pszFGRGB, char* pszBGRGB)
 }
 
 
-uint Terminal::GetColorByRGB (char* pszRGB)
+uint Terminal::GetColorByRGB (const char* pszRGB)
 {
 	if (pszRGB == NULL)
 	{
@@ -825,7 +825,6 @@ void Terminal::TGraph::PlotGraphics (uint nX, uint nY, uint nWidth, uint nHeight
     Term.Box (nX, nY, nXX, nYY, NULL);
 
     uint32_t nOffset;
-    uint32_t nPossition, nPorcentage;
     uint32_t nGraphOffset = 0;
 
     if (this->nOffset == 0 && bScroll == false)

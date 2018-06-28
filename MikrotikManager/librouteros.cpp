@@ -957,14 +957,14 @@ uint32_t MikrotikLib::SendCommand (const char *pszCommand, void (*pHandle)(struc
             if (nDataCount == 0)
             {
                 //Mikrotik Command
-                NOTRACE ("Command: [%s]\n", strCommand.c_str());
+                //TRACE ("Command: [%s]\n", strCommand.c_str());
 
                 ros_sentence_add (Sentence, (char*) strCommand.c_str());
             }
             else
             {
                 //Mikrotik arguments
-                NOTRACE ("Arguments: =[%s]\n", strCommand.c_str());
+                //TRACE ("Arguments: =[%s]\n", strCommand.c_str());
 
                 ros_sentence_add (Sentence, (char*) strCommand.c_str());
             }
