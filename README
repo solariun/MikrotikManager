@@ -7,3 +7,5 @@ Executing example:
 ./MikrotikManager 10.10.0.1 "" "<admin user>" "<passwd>" <TX in K> <RX in K> "<interface>"
 
 Pooling every 5 seconds.
+
+Written in C++98 for compatibility reasons.
