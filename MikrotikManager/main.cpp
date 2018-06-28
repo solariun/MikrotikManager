@@ -1841,7 +1841,7 @@ int main(int nArgs, char *pszArgs [])
         fflush (stdout);
 
 
-        sleep (2);
+        sleep (1);
 
         Term.ResetAttr();
         Term.Cls ();
