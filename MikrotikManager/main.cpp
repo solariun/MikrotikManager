@@ -1766,7 +1766,7 @@ int main(int nArgs, char *pszArgs [])
 
 
     strIPInterfaceMonitoring = "";
-    strIPInterfaceMonitoring = strIPInterfaceMonitoring + "/tool/torch =dst-address=0.0.0.0/0 =interface=" + pszArgs [7] + " =src-address=0.0.0.0/0 =ip-protocol=tcp ";
+    strIPInterfaceMonitoring = strIPInterfaceMonitoring + "/tool/torch =dst-address=0.0.0.0/0 =freeze-frame-interval=4 =interface=" + pszArgs [7] + " =src-address=0.0.0.0/0 =ip-protocol=tcp ";
 
     string strTouchString;
 
