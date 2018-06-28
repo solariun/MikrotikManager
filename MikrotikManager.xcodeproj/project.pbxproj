@@ -48,6 +48,7 @@
 		670568861F53301000A3ACD1 /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = "<group>"; };
 		67235B9619424B9600733EC0 /* librouteros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = librouteros.h; sourceTree = "<group>"; };
 		67235B9819424CF100733EC0 /* librouteros.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = librouteros.cpp; sourceTree = "<group>"; };
+		675DBF7220E4928F00552722 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		67CC03EE19420C3500260E1C /* MikrotikManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MikrotikManager; sourceTree = BUILT_PRODUCTS_DIR; };
 		67CC03F119420C3500260E1C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		67CC03F319420C3500260E1C /* MikrotikManager.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = MikrotikManager.1; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		67CC03E519420C3500260E1C = {
 			isa = PBXGroup;
 			children = (
+				675DBF7220E4928F00552722 /* README */,
 				670568861F53301000A3ACD1 /* LICENCE */,
 				67CC03F019420C3500260E1C /* MikrotikManager */,
 				67CC03EF19420C3500260E1C /* Products */,

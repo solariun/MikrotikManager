@@ -1,0 +1,9 @@
+Compiling:
+
+g++ -o MikrotikManager -I. -I /opt/local/include -L /opt/local/lib/ -lssl *.cpp
+
+Executing example:
+
+./MikrotikManager 10.10.0.1 "" "<admin user>" "<passwd>" <TX in K> <RX in K> "<interface>"
+
+Pooling every 5 seconds.
